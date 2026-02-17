@@ -13,6 +13,13 @@ Built for reliability, scalability, and real-world deployment.
   <img src="https://img.shields.io/badge/Database-Supabase-green" />
   <img src="https://img.shields.io/badge/AI-Groq-purple" />
   <img src="https://img.shields.io/badge/License-MIT-blue" />
+
+  <br/>
+
+  <img src="https://img.shields.io/badge/Python-111111?style=for-the-badge&logo=python&logoColor=3776AB" />
+<img src="https://img.shields.io/badge/Supabase-111111?style=for-the-badge&logo=supabase&logoColor=3ECF8E" />
+<img src="https://img.shields.io/badge/Meta%20Llama-111111?style=for-the-badge&logo=meta&logoColor=0866FF" />
+<img src="https://img.shields.io/badge/OCR-111111?style=for-the-badge&logo=adobeacrobatreader&logoColor=FF0000" />
 </p>
 
 ---
