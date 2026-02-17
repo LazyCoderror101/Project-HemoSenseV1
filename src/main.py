@@ -33,24 +33,42 @@ st.logo(APP_LOGO, icon_image=APP_LOGO)
 
 
 def show_welcome_screen():
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.image(APP_LOGO, width=250)
-    
-    st.markdown(
-        f"""
-        <div style='text-align: center; padding: 50px;'>
-            <h1>{APP_NAME}</h1>
-            <h3>{APP_DESCRIPTION}</h3>
-            <p style='font-size: 1.2em; color: #666;'>{APP_TAGLINE}</p>
-            <p>Start by creating a new analysis session</p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    # Center content vertically and horizontally
+    left_spacer, content_col, right_spacer = st.columns([1, 2, 1])
+    with content_col:
+        st.markdown(
+            """
+            <div style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 2rem 1rem 1rem 1rem;
+            ">
+            """,
+            unsafe_allow_html=True,
+        )
 
-    col1, col2, col3 = st.columns([2, 3, 2])
-    with col2:
+        # Use Streamlit's image loader so the local file path resolves correctly
+        st.image(APP_LOGO, width=220)
+
+        st.markdown(
+            f"""
+            <h1 style="margin: 1rem 0 0.25rem 0;">{APP_NAME}</h1>
+            <h3 style="margin: 0.25rem 0; font-weight: 400; color: #ddd;">{APP_DESCRIPTION}</h3>
+            <p style="font-size: 1.1rem; color: #aaa; margin: 0.5rem 0 1.5rem 0;">
+                {APP_TAGLINE}
+            </p>
+            <p style="margin: 0; font-size: 0.95rem; color: #888;">
+                Start by creating a new analysis session
+            </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        # Primary call-to-action button, aligned with content
         if st.button(
             "➕ Create New Analysis Session", use_container_width=True, type="primary"
         ):
