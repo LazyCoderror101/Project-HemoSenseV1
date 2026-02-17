@@ -36,48 +36,46 @@ def show_welcome_screen():
     # Center content vertically and horizontally
     left_spacer, content_col, right_spacer = st.columns([1, 2, 1])
     with content_col:
-        st.markdown(
-            """
-            <div style="
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                padding: 2rem 1rem 1rem 1rem;
-            ">
-            """,
-            unsafe_allow_html=True,
-        )
+        # A little vertical breathing room under the app header/greeting
+        st.markdown("<div style='height: 6vh;'></div>", unsafe_allow_html=True)
 
-        # Use Streamlit's image loader so the local file path resolves correctly
-        st.image(APP_LOGO, width=220)
+        # Center the logo precisely
+        _, logo_col, _ = st.columns([1, 3, 1])
+        with logo_col:
+            st.image(APP_LOGO, width=220)
 
         st.markdown(
             f"""
-            <h1 style="margin: 1rem 0 0.25rem 0;">{APP_NAME}</h1>
-            <h3 style="margin: 0.25rem 0; font-weight: 400; color: #ddd;">{APP_DESCRIPTION}</h3>
-            <p style="font-size: 1.1rem; color: #aaa; margin: 0.5rem 0 1.5rem 0;">
-                {APP_TAGLINE}
-            </p>
-            <p style="margin: 0; font-size: 0.95rem; color: #888;">
-                Start by creating a new analysis session
-            </p>
+            <div style="text-align: center; margin-top: 0.75rem;">
+                <h1 style="margin: 0.75rem 0 0.25rem 0;">{APP_NAME}</h1>
+                <div style="font-size: 1.05rem; font-weight: 500; color: #E6E6E6; margin: 0.25rem 0;">
+                    {APP_DESCRIPTION}
+                </div>
+                <div style="font-size: 0.98rem; color: #A8A8A8; margin: 0.25rem 0 1.25rem 0;">
+                    {APP_TAGLINE}
+                </div>
+                <div style="font-size: 0.92rem; color: #8A8A8A; margin: 0 0 1.25rem 0;">
+                    Start by creating a new analysis session
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-        # Primary call-to-action button, aligned with content
-        if st.button(
-            "➕ Create New Analysis Session", use_container_width=True, type="primary"
-        ):
-            success, session = SessionManager.create_chat_session()
-            if success:
-                st.session_state.current_session = session
-                st.rerun()
-            else:
-                st.error("Failed to create session")
+        # Center the call-to-action button and keep it a reasonable width
+        _, btn_col, _ = st.columns([1, 2, 1])
+        with btn_col:
+            if st.button(
+                "➕ Create New Analysis Session",
+                use_container_width=True,
+                type="primary",
+            ):
+                success, session = SessionManager.create_chat_session()
+                if success:
+                    st.session_state.current_session = session
+                    st.rerun()
+                else:
+                    st.error("Failed to create session")
 
 
 def show_chat_history():
