@@ -92,3 +92,9 @@ This guarantees robustness under model failure or rate limits.
 |--------|------|--------|
 | <img src="https://github.com/LazyCoderror101.png" width="60" height="60" style="border-radius:50%;"> | LazyCoder | [@LazyCoder](https://github.com/LazyCoderror101) |
 | <img src="https://github.com/nirmalyamohanty.png" width="60" height="60" style="border-radius:50%;"> | Nirmalya K. Mohanty | [@NirmalyaMohanty](https://github.com/nirmalyamohanty) |
+## 👤 
+
+Author
+
+**Shaheer**  
+GitHub: [@lazycoderror](https://github.com/lazycoderror101)
