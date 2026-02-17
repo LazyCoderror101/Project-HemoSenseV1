@@ -33,49 +33,54 @@ st.logo(APP_LOGO, icon_image=APP_LOGO)
 
 
 def show_welcome_screen():
-    # Center content vertically and horizontally
-    left_spacer, content_col, right_spacer = st.columns([1, 2, 1])
-    with content_col:
-        # A little vertical breathing room under the app header/greeting
-        st.markdown("<div style='height: 6vh;'></div>", unsafe_allow_html=True)
+    st.markdown(
+        """
+        <style>
+          .welcome-copy {
+            text-align: center;
+            max-width: 520px;
+            margin: 0 auto;
+          }
+          .welcome-copy h1 { margin: 0.9rem 0 0.35rem 0; }
+          .welcome-desc { font-size: 1.05rem; font-weight: 500; color: #E6E6E6; margin: 0.2rem 0; }
+          .welcome-tagline { font-size: 0.98rem; color: #A8A8A8; margin: 0.25rem 0 1.1rem 0; }
+          .welcome-hint { font-size: 0.92rem; color: #8A8A8A; margin: 0 0 1.25rem 0; }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-        # Center the logo precisely
-        _, logo_col, _ = st.columns([1, 3, 1])
-        with logo_col:
-            st.image(APP_LOGO, width=220)
+    # Visual centering on most screens (works well with the top greeting present)
+    st.markdown("<div style='height: 8vh;'></div>", unsafe_allow_html=True)
+
+    # One centered column for logo + text + button (keeps everything aligned)
+    _, hero_col, _ = st.columns([1, 1.25, 1])
+    with hero_col:
+        st.image(APP_LOGO, width=220)
 
         st.markdown(
             f"""
-            <div style="text-align: center; margin-top: 0.75rem;">
-                <h1 style="margin: 0.75rem 0 0.25rem 0;">{APP_NAME}</h1>
-                <div style="font-size: 1.05rem; font-weight: 500; color: #E6E6E6; margin: 0.25rem 0;">
-                    {APP_DESCRIPTION}
-                </div>
-                <div style="font-size: 0.98rem; color: #A8A8A8; margin: 0.25rem 0 1.25rem 0;">
-                    {APP_TAGLINE}
-                </div>
-                <div style="font-size: 0.92rem; color: #8A8A8A; margin: 0 0 1.25rem 0;">
-                    Start by creating a new analysis session
-                </div>
+            <div class="welcome-copy">
+              <h1>{APP_NAME}</h1>
+              <div class="welcome-desc">{APP_DESCRIPTION}</div>
+              <div class="welcome-tagline">{APP_TAGLINE}</div>
+              <div class="welcome-hint">Start by creating a new analysis session</div>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-        # Center the call-to-action button and keep it a reasonable width
-        _, btn_col, _ = st.columns([1, 2, 1])
-        with btn_col:
-            if st.button(
-                "➕ Create New Analysis Session",
-                use_container_width=True,
-                type="primary",
-            ):
-                success, session = SessionManager.create_chat_session()
-                if success:
-                    st.session_state.current_session = session
-                    st.rerun()
-                else:
-                    st.error("Failed to create session")
+        if st.button(
+            "➕ Create New Analysis Session",
+            use_container_width=True,
+            type="primary",
+        ):
+            success, session = SessionManager.create_chat_session()
+            if success:
+                st.session_state.current_session = session
+                st.rerun()
+            else:
+                st.error("Failed to create session")
 
 
 def show_chat_history():
