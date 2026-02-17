@@ -56,8 +56,6 @@ def show_welcome_screen():
     # One centered column for logo + text + button (keeps everything aligned)
     _, hero_col, _ = st.columns([1, 1.25, 1])
     with hero_col:
-        st.image(APP_LOGO, width=220)
-
         st.markdown(
             f"""
             <div class="welcome-copy">
